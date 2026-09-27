@@ -344,6 +344,23 @@ export class GameEngine {
     x.fillStyle = '#ffe8ec'; x.font = '900 13px Nunito'; x.textAlign = 'center'; x.fillText('Hb', 0, 21);
     x.restore();
   }
-  hud(x) { if (!this.level) return; x.fillStyle = '#071b40e8'; x.strokeStyle = '#70dfff'; x.lineWidth = 3; this.round(x, 18, 16, 555, 62, 11); x.fill(); x.stroke(); x.fillStyle = 'white'; x.textAlign = 'left'; x.font = '900 20px Nunito'; x.fillText(this.level.title, 37, 43); x.font = '800 13px Nunito'; x.fillStyle = '#a9eaff'; x.fillText(this.level.description, 37, 64); x.textAlign = 'right'; x.font = '900 25px Nunito'; x.fillStyle = '#ffdb4d'; x.fillText('♥'.repeat(this.lives), 1170, 48); x.fillStyle = 'white'; x.fillText('◉ × ' + String(this.score).padStart(2, '0'), 1255, 48); }
+  hud(x) {
+    if (!this.level) return;
+    // Caixa da fase (esquerda)
+    x.fillStyle = '#071b40e8'; x.strokeStyle = '#70dfff'; x.lineWidth = 3;
+    this.round(x, 18, 16, 555, 62, 11); x.fill(); x.stroke();
+    x.fillStyle = 'white'; x.textAlign = 'left';
+    x.font = '900 20px Nunito'; x.fillText(this.level.title, 37, 43);
+    x.font = '800 13px Nunito'; x.fillStyle = '#a9eaff'; x.fillText(this.level.description, 37, 64);
+
+    // Caixa de vidas e placar (ao lado, deixando o canto direito livre para os botões mobile)
+    x.fillStyle = '#071b40e8'; x.strokeStyle = '#70dfff'; x.lineWidth = 3;
+    this.round(x, 880, 16, 230, 62, 11); x.fill(); x.stroke();
+    x.textAlign = 'center';
+    x.font = '900 23px Nunito'; x.fillStyle = '#ff4d6d';
+    x.fillText('♥'.repeat(this.lives), 940, 53);
+    x.fillStyle = '#ffd748';
+    x.fillText('◉ ' + String(this.score).padStart(2, '0'), 1050, 53);
+  }
   round(x, a, b, w, h, r) { x.beginPath(); x.roundRect(a, b, w, h, r); }
 }
