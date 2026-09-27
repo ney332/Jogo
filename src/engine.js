@@ -41,12 +41,22 @@ export class GameEngine {
   update(dt) {
     if (this.state !== 'playing') return;
     const p = this.player, cfg = this.character.physics, dir = (this.keys.right ? 1 : 0) - (this.keys.left ? 1 : 0);
+    const jumpPressed = Boolean(this.keys.jump && !this.jumpHeld);
+    this.jumpHeld = Boolean(this.keys.jump);
+
     p.vx += dir * cfg.acceleration * dt; p.vx *= p.grounded ? .91 : .97; p.vx = clamp(p.vx, -cfg.speed, cfg.speed);
     p.coyote = p.grounded ? .11 : Math.max(0, p.coyote - dt);
-    if (this.keys.jump && !this.jumpHeld) p.jumpBuffer = .12;
+    if (jumpPressed) p.jumpBuffer = .14;
     else p.jumpBuffer = Math.max(0, p.jumpBuffer - dt);
-    this.jumpHeld = this.keys.jump;
-    if (p.jumpBuffer && p.coyote) { p.vy = -cfg.jumpForce; p.grounded = false; p.coyote = 0; p.jumpBuffer = 0; }
+
+    let playerJumped = false;
+    if (p.jumpBuffer && p.coyote) {
+      p.vy = -cfg.jumpForce;
+      p.grounded = false;
+      p.coyote = 0;
+      p.jumpBuffer = 0;
+      playerJumped = true;
+    }
     p.vy += cfg.gravity * dt; p.vy = Math.min(p.vy, 1100); p.x += p.vx * dt; this.collideX(p); p.prevY = p.y; p.y += p.vy * dt; p.grounded = false; this.collideY(p);
     p.x = Math.max(0, p.x);
 
@@ -55,18 +65,27 @@ export class GameEngine {
       const cmp = this.companion;
       const dist = p.x - cmp.x;
       let cAcc = dir * cfg.acceleration;
-      if (dist > 75) cAcc += 500;
-      else if (dist < -50) cAcc -= 500;
+      if (dist > 65) cAcc += 600;
+      else if (dist < -50) cAcc -= 600;
 
       cmp.vx += cAcc * dt;
       cmp.vx *= cmp.grounded ? .91 : .97;
-      cmp.vx = clamp(cmp.vx, -cfg.speed * 1.05, cfg.speed * 1.05);
+      cmp.vx = clamp(cmp.vx, -cfg.speed * 1.08, cfg.speed * 1.08);
 
-      cmp.coyote = cmp.grounded ? .11 : Math.max(0, cmp.coyote - dt);
-      if (this.keys.jump && !this.jumpHeld) cmp.jumpBuffer = .13;
-      else cmp.jumpBuffer = Math.max(0, cmp.jumpBuffer - dt);
+      cmp.coyote = cmp.grounded ? .12 : Math.max(0, cmp.coyote - dt);
 
-      if (cmp.jumpBuffer && cmp.coyote) {
+      // A Hemácia recebe o pulo quando o jogador aperta pular, ou quando o jogador acaba de pular
+      if (jumpPressed || playerJumped) {
+        cmp.jumpBuffer = 0.25;
+      } else {
+        cmp.jumpBuffer = Math.max(0, cmp.jumpBuffer - dt);
+      }
+
+      // Se o jogador estiver em uma plataforma mais alta, a hemácia também pula para subir
+      const playerHigher = p.y < cmp.y - 25;
+      const needClimb = playerHigher && (Math.abs(dist) < 220 || Math.abs(cmp.vx) < 50);
+
+      if ((cmp.jumpBuffer > 0 || needClimb) && (cmp.coyote > 0 || cmp.grounded)) {
         cmp.vy = -cfg.jumpForce;
         cmp.grounded = false;
         cmp.coyote = 0;
@@ -84,7 +103,7 @@ export class GameEngine {
       cmp.x = Math.max(0, cmp.x);
 
       // Reaparece perto do jogador caso se afaste demais ou caia
-      if (Math.abs(p.x - cmp.x) > 300 || cmp.y > H + 50) {
+      if (Math.abs(p.x - cmp.x) > 320 || cmp.y > H + 50) {
         cmp.x = p.x - 45;
         cmp.y = p.y;
         cmp.vx = p.vx;
