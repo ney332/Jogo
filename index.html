@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BioAventura — Missão O₂</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main id="game-shell" aria-label="BioAventura, jogo educativo de biologia">
+      <canvas id="game" width="1280" height="720" aria-label="Área do jogo"></canvas>
+      <section id="overlay" class="overlay" aria-live="polite"></section>
+      <div class="controls" aria-label="Controles móveis">
+        <button data-key="left" aria-label="Mover para esquerda">◀</button>
+        <button data-key="right" aria-label="Mover para direita">▶</button>
+        <button data-key="jump" class="jump" aria-label="Pular">▲</button>
+      </div>
+    </main>
+    <script type="module" src="src/main.js"></script>
+  </body>
+</html>
