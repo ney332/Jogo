@@ -33,8 +33,8 @@ function card({eyebrow='', title, body='', fact='', actions=[]}) {
 
 function menu() {
   card({
-    eyebrow: 'PLATAFORMA EDUCATIVA DE BIOLOGIA',
-    title: 'BIO<br>AVENTURA',
+    eyebrow: '',
+    title: 'Missão<br>O2',
     body: 'Uma jornada jogável pelo corpo humano. Corra, pule, aprenda e leve o oxigênio até as células.',
     actions: MISSIONS.map((m, i) => [`${m.title} — ${m.subtitle}`, () => intro(i)])
   });

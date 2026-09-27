@@ -1,7 +1,7 @@
 // Conteúdo do jogo: trocar/adicionar dados aqui não exige alterar o motor.
 export const CHARACTERS = {
-  oxygen:        { id: 'oxygen',        name: 'Oxigênio',    symbol: 'O₂',  color: '#1aa9f4', shade: '#0875cf', description: 'Sou o oxigênio e minha missão é chegar até o pulmão e entrar no sangue!', physics: { speed: 850, acceleration: 5000, jumpForce: 710, gravity: 1850 }, abilities: { doubleJump: false } },
-  carbonDioxide: { id: 'carbonDioxide', name: 'Gás carbônico', symbol: 'CO₂', color: '#8194ad', shade: '#4c617d', description: 'Vou voltar aos pulmões para sair na expiração!',                         physics: { speed: 800, acceleration: 5000, jumpForce: 790, gravity: 1850 }, abilities: { doubleJump: false } }
+  oxygen:        { id: 'oxygen',        name: 'Oxigênio',    symbol: 'O₂',  color: '#1aa9f4', shade: '#0875cf', description: 'Sou o oxigênio e minha missão é chegar até o pulmão e entrar no sangue!', physics: { speed: 850, acceleration: 5000, jumpForce: 800, gravity: 1850 }, abilities: { doubleJump: false } },
+  carbonDioxide: { id: 'carbonDioxide', name: 'Gás carbônico', symbol: 'CO₂', color: '#8194ad', shade: '#4c617d', description: 'Vou voltar aos pulmões para sair na expiração!',                         physics: { speed: 800, acceleration: 5000, jumpForce: 810, gravity: 1850 }, abilities: { doubleJump: false } }
 };
 
 export const THEMES = {
@@ -81,8 +81,8 @@ export const MISSIONS = [
         'O O₂ passa pela faringe e laringe em direção à traqueia.',
         'throat',
         [
-          { x: 520, y: 340, title: 'FARINGE', text: 'A faringe conduz o ar até a laringe e o alimento até o esôfago.' },
-          { x: 920, y: 270, title: 'LARINGE', text: 'A laringe abriga as cordas vocais e direciona o ar até a traqueia.' }
+          { x: 520, y: 340, title: 'FARINGE', text: 'A faringe conduz o ar até a laringe' },
+          { x: 920, y: 270, title: 'LARINGE', text: 'A laringe direciona o ar até a traqueia.' }
         ],
         'TRAQUEIA',
         [
@@ -101,7 +101,7 @@ export const MISSIONS = [
         'A traqueia é reforçada por anéis de cartilagem. Ela leva o ar até os brônquios.',
         'respiratory',
         [
-          { x: 450,  y: 310, title: 'ANÉIS DE CARTILAGEM', text: 'Anéis em forma de C mantêm a traqueia aberta para o fluxo de ar.' },
+          { x: 450,  y: 310, title: 'ANÉIS DE CARTILAGEM', text: 'O ar passa pela traqueia em direção aos brônquios.' },
           { x: 1150, y: 310, title: 'CARINA',              text: 'A carina é a bifurcação da traqueia em dois brônquios principais.' }
         ],
         'BRÔNQUIOS',
@@ -119,7 +119,7 @@ export const MISSIONS = [
         'O O₂ percorre os brônquios e bronquíolos, que se ramificam cada vez mais.',
         'bronchi',
         [
-          { x: 200,  y: 300, title: 'BRÔNQUIOS',            text: 'Os brônquios principais ramificam-se a partir da traqueia.' },
+          { x: 200,  y: 300, title: 'BRÔNQUIOS',            text: 'Os brônquios principais ramificam-se em bronquíolos.' },
           { x: 650,  y: 300, title: 'BRONQUÍOLOS',          text: 'Os bronquíolos conduzem o ar até os alvéolos pulmonares.' },
 
         ],
@@ -142,7 +142,7 @@ export const MISSIONS = [
         'O O₂ chega ao alvéolo e realiza a troca gasosa! A missão está quase concluída.',
         'alveolus',
         [
-          { x: 750,  y: 230, title: 'PO2 = 104 mmHg',           text: 'O O₂ atravessa a parede alveolar e entra nos glóbulos vermelhos.' },
+          { x: 750,  y: 230, title: 'PO2 = 104 mmHg',           text: 'O O₂ atravessa a membrana alveolo-capilar por difusão.' },
           { x: 1400, y: 200, title: 'MEMBRANA ALVÉOLO-CAPILAR', text: 'Hematose: O O₂ entra no sangue e o CO₂ sai pelos pulmões.' }
         ],
         'TROCA GASOSA',
@@ -162,7 +162,7 @@ export const MISSIONS = [
         'O O₂ passa para a corrente sanguínea por difusão.',
         'capilarS',
         [
-          { x: 750,  y: 230, title: 'PO2 = 40 mmHg',           text: 'O O₂ atravessa a parede alveolar e entra nos glóbulos vermelhos.' },
+          { x: 750,  y: 230, title: 'PO2 = 40 mmHg',           text: 'O O₂ liga-se à hemoglobina presente nas hemácias.' },
         ],
         'TROCA GASOSA',
         [
@@ -185,7 +185,7 @@ export const MISSIONS = [
     character: 'oxygen', theme: 'bloodstream',
     introduction: 'Agora que entrei no sangue, vou viajar até as células do corpo!',
     finalMessage: 'O oxigênio chegou às células e agora é energia!',
-    finalFact: 'As mitocôndrias usam oxigênio para ajudar a célula a produzir energia (ATP).',
+    finalFact: 'By: Ariane Rodrigues, Barbara Nunes e Victória Santos.',
     nextMissionLabel: 'JOGAR NOVAMENTE',
     levels: [
       level(
@@ -249,7 +249,7 @@ export const MISSIONS = [
         'Depois de ser liberado pela hemoglobina, o O2 chega até a célula.',
         'cellular',
         [
-          { x: 450,  y: 300, title: 'O O2 passa para o liquido intersticial e entra na célula.'},
+          { x: 450,  y: 300, title: 'O O2 passa para o liquido intersticial e entra na célula.', text:'Dentro da célula, o O2 será utilizado principalmente pelas mitocôndrias.'},
         ],
         'CÉLULAS',
         [
