@@ -1,7 +1,7 @@
 // Conteúdo do jogo: trocar/adicionar dados aqui não exige alterar o motor.
 export const CHARACTERS = {
-  oxygen:        { id: 'oxygen',        name: 'Oxigênio',    symbol: 'O₂',  color: '#1aa9f4', shade: '#0875cf', description: 'Sou o oxigênio e minha missão é chegar até o pulmão e entrar no sangue!', physics: { speed: 850, acceleration: 5000, jumpForce: 800, gravity: 1850 }, abilities: { doubleJump: false } },
-  carbonDioxide: { id: 'carbonDioxide', name: 'Gás carbônico', symbol: 'CO₂', color: '#8194ad', shade: '#4c617d', description: 'Vou voltar aos pulmões para sair na expiração!',                         physics: { speed: 800, acceleration: 5000, jumpForce: 810, gravity: 1850 }, abilities: { doubleJump: false } }
+  oxygen:        { id: 'oxygen',        name: 'Oxigênio',    symbol: 'O₂',  color: '#1aa9f4', shade: '#0875cf', description: 'Sou o oxigênio e minha missão é chegar até o pulmão e entrar no sangue!', physics: { speed: 500, acceleration: 2500, jumpForce: 750, gravity: 1800 }, abilities: { doubleJump: false } },
+  carbonDioxide: { id: 'carbonDioxide', name: 'Gás carbônico', symbol: 'CO₂', color: '#8194ad', shade: '#4c617d', description: 'Vou voltar aos pulmões para sair na expiração!',                         physics: { speed: 500, acceleration: 2500, jumpForce: 750, gravity: 1800 }, abilities: { doubleJump: false } }
 };
 
 export const THEMES = {
