@@ -29,6 +29,7 @@ body {
   background: radial-gradient(circle at 50% 0%, #164b90, #07152e 75%);
 }
 
+/* ── MOLDURA DO JOGO (16:9) ────────────────────────────────────────────── */
 #game-shell {
   position: relative;
   width: min(100vw, calc(100dvh * 16 / 9), 1280px);
@@ -38,6 +39,16 @@ body {
   box-shadow: 0 25px 80px #000a;
   touch-action: none;
   overscroll-behavior: none;
+  border-radius: 12px;
+}
+
+/* No mobile horizontal, reserva as faixas laterais para os controles ficarem FORA da cena */
+@media (max-width: 1024px) and (orientation: landscape), (pointer: coarse) and (orientation: landscape) {
+  #game-shell {
+    width: min(calc(100vw - 220px), calc(100dvh * 16 / 9), 1280px);
+    border-radius: 18px;
+    box-shadow: 0 10px 40px #000c, 0 0 0 3px #1a518f88;
+  }
 }
 
 #game {
@@ -143,14 +154,14 @@ button:active {
   font-size: 12px;
 }
 
-/* ── BARRA SUPERIOR MOBILE (TELA CHEIA E PAUSA) ────────────────────────── */
+/* ── BARRA SUPERIOR MOBILE (FORA DO QUADRO DO JOGO) ────────────────────── */
 .top-bar {
-  position: absolute;
-  top: 14px;
-  right: 14px;
+  position: fixed;
+  top: calc(10px + env(safe-area-inset-top, 0px));
+  right: calc(14px + env(safe-area-inset-right, 0px));
   display: flex;
   gap: 10px;
-  z-index: 25;
+  z-index: 60;
   pointer-events: auto;
 }
 
@@ -181,32 +192,33 @@ button:active {
   box-shadow: 0 1px #031022;
 }
 
-/* ── CONTROLES VIRTUAIS TOUCH (GAMEPAD ERGONÔMICO) ──────────────────────── */
+/* ── CONTROLES VIRTUAIS TOUCH (NAS LATERAIS EXTERNAS DA TELA) ──────────── */
 .controls {
-  position: absolute;
-  bottom: 16px;
-  left: 16px;
-  right: 16px;
+  position: fixed;
+  inset: 0;
   display: none;
   justify-content: space-between;
   align-items: flex-end;
+  padding: 0 calc(12px + env(safe-area-inset-right, 0px)) calc(16px + env(safe-area-inset-bottom, 0px)) calc(12px + env(safe-area-inset-left, 0px));
   pointer-events: none;
-  z-index: 20;
+  z-index: 50;
 }
 
 @media (max-width: 1024px), (pointer: coarse) {
-  .controls { display: flex; }
+  .controls {
+    display: flex;
+  }
 }
 
 .dpad {
   display: flex;
-  gap: 12px;
+  gap: 10px;
   pointer-events: auto;
 }
 
 .actions {
   display: flex;
-  gap: 12px;
+  gap: 10px;
   pointer-events: auto;
 }
 
@@ -217,11 +229,11 @@ button:active {
   -webkit-touch-callout: none;
   touch-action: none;
   -webkit-tap-highlight-color: transparent;
-  width: 72px;
-  height: 66px;
-  border-radius: 18px;
+  width: 70px;
+  height: 68px;
+  border-radius: 20px;
   border: 3px solid #8edfff;
-  background: linear-gradient(#2f83d9cc, #12529dcc);
+  background: linear-gradient(#2f83d9e6, #12529de6);
   box-shadow: 0 5px #052954;
   color: white;
   display: grid;
@@ -232,10 +244,11 @@ button:active {
 }
 
 .btn-jump {
-  width: 86px;
-  height: 78px;
+  width: 82px;
+  height: 82px;
+  border-radius: 50% !important; /* Botão circular arcade / console */
   font-size: 32px !important;
-  background: linear-gradient(#ff9800e6, #e65100e6) !important;
+  background: linear-gradient(#ff9800f2, #e65100f2) !important;
   border-color: #ffe680 !important;
   box-shadow: 0 6px #7a2b00 !important;
 }
@@ -347,31 +360,29 @@ button:active {
 
   .btn-ctrl {
     width: 62px;
-    height: 56px;
+    height: 60px;
     font-size: 22px;
   }
 
   .btn-jump {
-    width: 72px;
-    height: 64px;
-    font-size: 26px !important;
+    width: 74px;
+    height: 74px;
+    font-size: 28px !important;
   }
 
   .controls {
-    bottom: 10px;
-    left: 12px;
-    right: 12px;
+    padding: 0 calc(8px + env(safe-area-inset-right, 0px)) calc(12px + env(safe-area-inset-bottom, 0px)) calc(8px + env(safe-area-inset-left, 0px));
   }
 
   .top-bar {
-    top: 8px;
-    right: 8px;
+    top: calc(8px + env(safe-area-inset-top, 0px));
+    right: calc(8px + env(safe-area-inset-right, 0px));
   }
 
   .icon-btn {
-    width: 36px;
-    height: 36px;
-    font-size: 16px;
+    width: 38px;
+    height: 38px;
+    font-size: 17px;
   }
 }
 

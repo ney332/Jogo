@@ -10,24 +10,24 @@
     <main id="game-shell" aria-label="Missão O2">
       <canvas id="game" width="1280" height="720" aria-label="Área do jogo"></canvas>
       <section id="overlay" class="overlay" aria-live="polite"></section>
-      
-      <!-- Barra superior para celular (Tela Cheia e Pausa) -->
-      <div class="top-bar" aria-label="Atalhos do jogo">
-        <button id="btn-fullscreen" class="icon-btn" aria-label="Alternar tela cheia" title="Tela Cheia">⛶</button>
-        <button id="btn-pause" class="icon-btn" aria-label="Pausar jogo" title="Pausar">⏸</button>
-      </div>
-
-      <!-- Controles virtuais ergonômicos para celular -->
-      <div class="controls" aria-label="Controles móveis">
-        <div class="dpad" aria-label="Direcionais (Mão esquerda)">
-          <button data-key="left" class="btn-ctrl" aria-label="Mover para esquerda">◀</button>
-          <button data-key="right" class="btn-ctrl" aria-label="Mover para direita">▶</button>
-        </div>
-        <div class="actions" aria-label="Ações (Mão direita)">
-          <button data-key="jump" class="btn-ctrl btn-jump" aria-label="Pular">▲</button>
-        </div>
-      </div>
     </main>
+
+    <!-- Barra superior para celular (fora do quadro do jogo) -->
+    <div class="top-bar" aria-label="Atalhos do jogo">
+      <button id="btn-fullscreen" class="icon-btn" aria-label="Alternar tela cheia" title="Tela Cheia">⛶</button>
+      <button id="btn-pause" class="icon-btn" aria-label="Pausar jogo" title="Pausar">⏸</button>
+    </div>
+
+    <!-- Controles virtuais ergonômicos nas laterais externas da tela -->
+    <div class="controls" aria-label="Controles móveis">
+      <div class="dpad" aria-label="Direcionais (Mão esquerda)">
+        <button data-key="left" class="btn-ctrl" aria-label="Mover para esquerda">◀</button>
+        <button data-key="right" class="btn-ctrl" aria-label="Mover para direita">▶</button>
+      </div>
+      <div class="actions" aria-label="Ações (Mão direita)">
+        <button data-key="jump" class="btn-ctrl btn-jump" aria-label="Pular">▲</button>
+      </div>
+    </div>
 
     <!-- Aviso amigável para girar o celular caso esteja em modo retrato -->
     <div id="rotate-device-prompt" class="rotate-prompt" aria-hidden="true">
