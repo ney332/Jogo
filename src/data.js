@@ -228,7 +228,7 @@ export const MISSIONS = [
         'cellular',
         [
           { x: 450,  y: 300, title: 'PRODUÇÃO DE CO2', text: 'O aumento do CO2 diminui a afinidade da hemoglobina pelo O2.' },
-          { x: 1400, y: 200, title: 'CÉLULA', text:'🫀'}
+          { x: 1400, y: 200, title: 'CÉLULA', text:'EFEITO BOHR'}
         ],
         'CÉLULAS',
         [
